@@ -1,0 +1,33 @@
+name: PcgRandom
+
+on:
+  push:
+    tags:
+    - 'v[0-9]**'
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  build-julia:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - 'min'
+          - 'lts'
+          - 'nightly'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: julia-actions/setup-julia@v2
+      with:
+        project: ${{github.workspace}}
+        version: ${{matrix.version}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}
+      run: julia --project=. -e 'import Pkg; Pkg.test()'
+
