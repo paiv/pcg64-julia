@@ -1,7 +1,7 @@
 PCG Pseudorandom Number Generator
 ==
 A minimal PCG implementation. For a full-featured PCG, see
-[RandomNumbers.jl][https://github.com/JuliaRandom/RandomNumbers.jl].
+[RandomNumbers.jl](https://github.com/JuliaRandom/RandomNumbers.jl).
 
 [![standwithukraine](docs/StandWithUkraine.svg)](https://ukrainewar.carrd.co/)
 
