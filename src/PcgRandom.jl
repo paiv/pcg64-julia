@@ -36,7 +36,7 @@ Random.rng_native_52(::Pcg64Random) = UInt64
 
 @inline function Random.rand(r::Pcg64Random, ::SamplerType{UInt64})
     s = _bump(r.s, r.i)
-    res = bitrotate(xor(s % UInt64, UInt64(s >> 64)), -Int(s >> 122))
+    res = bitrotate(xor(s % UInt64, s >>> 64 % UInt64), -(s >>> 122 % Int))
     r.s = s
     return res
 end
