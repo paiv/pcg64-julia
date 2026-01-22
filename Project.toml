@@ -1,6 +1,6 @@
 name = "PcgRandom"
 uuid = "c90ac31e-0043-4c9f-af88-7398d10a215e"
-version = "1.0.0"
+version = "1.0.1"
 
 [deps]
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
