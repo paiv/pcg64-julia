@@ -50,7 +50,7 @@ end
 @inline function Random.rand(r::Pcg64Random, ::SamplerType{UInt128})
     a = rand(r, UInt64)
     b = rand(r, UInt64)
-    UInt128(a) << 64 + b
+    (a % UInt128) << 64 | b
 end
 
 @inline Random.rand(r::Pcg64Random, ::SamplerType{Int128}) =
@@ -72,8 +72,8 @@ advance!(r::Pcg64Random, delta::Integer) =
 function advance!(r::Pcg64Random, delta::UInt128)
     cur_mult = PCG64_MULTIPLIER
     cur_plus = r.i
-    acc_mult = UInt128(1)
-    acc_plus = UInt128(0)
+    acc_mult::UInt128 = 1
+    acc_plus::UInt128 = 0
     while delta > 0
        if isodd(delta)
           acc_mult *= cur_mult
